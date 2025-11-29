@@ -1,14 +1,15 @@
-# 📘
+# 📘Win32 길찾기 알고리즘 프로젝트
 <br>
 <img align="right" width="420"
      src="https://github.com/user-attachments/assets/57de145d-e166-401a-9226-e23cdd8ca2b8"
      alt="DirectX 11 Engine Editor Screenshot" />
 
 
-- 소개 영상: [A* 알고리즘](https://www.youtube.com/watch?v=CVj2y5PXsnw) / [JPS 알고리즘](https://www.youtube.com/watch?v=thwqsdws0BQ)
+- 소개 영상: [A* 알고리즘](https://www.youtube.com/watch?v=LJFaqtHtj8k&feature=youtu.be) / [JPS 알고리즘](https://www.youtube.com/watch?v=thwqsdws0BQ)
 - 개발 기간: 2023.03.22 ~ 2023.04.03 (12일)
 - 개발 인원: 1인
-- 핵심 요약: A*와 JPS 알고리즘을 직접 구현하여, 두 알고리즘 간의 성능 차이와 구조적 특징을 시각적으로 비교할 수 있는 Win32 기반 길찾기 시뮬레이터 개발
+- 핵심 요약: A*와 JPS 알고리즘을 직접 구현하여, 두 알고리즘 간의 성능 차이와  
+   구조적 특징을 시각적으로 비교할 수 있는 Win32 기반 길찾기 시뮬레이터 개발
 - 개발 환경: C, Win32API, VS2022
 
 <br clear="both"/>
@@ -52,7 +53,7 @@ Priority Queue를 활용하는 구조가 더 적합했음을 뒤늦게 깨달았
 
 ### 2. 시각화 구조 설계 부족 <a id="weak-optim"></a>
 
-탐색 영역을 임의 색상으로 표시하다 보니 경로 분석이 어려웠습니다.
+탐색 영역을 임의 색상으로 표시하다 보니 경로 분석이 어려웠습니다.  
 최종 경로를 붉은색 라인으로 시각화하는 개선을 적용하여 디버깅 효율이 크게 향상됐습니다.
 
 # 📘프로젝트에서 얻은 것
@@ -100,7 +101,7 @@ Priority Queue를 활용하는 구조가 더 적합했음을 뒤늦게 깨달았
 
 - 문제 상황
 
-계단형 구조에서 노드가 불필요하게 계속 생성되었습니다.
+계단형 구조에서 노드가 불필요하게 계속 생성되었습니다.  
 
 - 원인
 
@@ -113,12 +114,12 @@ Priority Queue를 활용하는 구조가 더 적합했음을 뒤늦게 깨달았
 
 - 배운 점  
 
-JPS의 경우 시뮬레이터를 여러 번 돌려보며 로직을 유추하는 방식으로
-진행하다 보니, 코너에서 발생하는 특수 예외들은 직접 구현하고
+JPS의 경우 시뮬레이터를 여러 번 돌려보며 로직을 유추하는 방식으로  
+진행하다 보니, 코너에서 발생하는 특수 예외들은 직접 구현하고  
 눈으로 확인해 보기 전까지는 파악하지 못했습니다.
 
-머리로 논리를 이해하는 것도 중요하지만,
-결국 코드 단위로 녹여내고 실행해 보는 과정에서만
+머리로 논리를 이해하는 것도 중요하지만,  
+결국 코드 단위로 녹여내고 실행해 보는 과정에서만  
 얻을 수 있는 인사이트가 있다는 것을 느꼈습니다.
 
 ---
@@ -144,16 +145,16 @@ closeList 추가, 사용된 노드 좌표 기록 후 탐색 제외 처리
 우선순위가 가장 낮은 타일을 먼저 탐색하는 것이 논리상 맞지만,  
 이를 위해 매번 리스트를 정렬하면서 `O(n log n)`의 비용을 지불하고 있었기 때문입니다.
 
-우선순위 큐(힙) 자료구조를 사용했다면,
-정렬된 상태를 유지한 채로 가중치가 낮은 타일을 꺼낼 수 있었고,
+우선순위 큐(힙) 자료구조를 사용했다면,  
+정렬된 상태를 유지한 채로 가중치가 낮은 타일을 꺼낼 수 있었고,  
 `O(log n)`의 시간 복잡도로 처리할 수 있었을 것입니다.
 
-이 경험을 통해 **알고리즘을 뒷받침하는 컨테이너 선택도  
-구현 전에 신중하게 고민해야 한다**는 것을 깨달았습니다.
+이 경험을 통해 알고리즘을 뒷받침하는 컨테이너 선택도  
+구현 전에 신중하게 고민해야 한다는 것을 깨달았습니다.
 
 ---
 
 
 # 📘핵심 주요 코드
-- (JPS-코드)[https://github.com/Myoungcholho/JPS_Algorithm/blob/master/Win32JPS/Win32JPS.cpp]
-- (A*-코드)[https://github.com/Myoungcholho/AStarAlgorithm/blob/main/Win32GridTileTest/Win32GridTileTest.cpp]
+- [JPS 알고리즘](https://github.com/Myoungcholho/JPS_Algorithm/blob/master/Win32JPS/Win32JPS.cpp)
+- [A* 알고리즘](https://github.com/Myoungcholho/AStarAlgorithm/blob/main/Win32GridTileTest/Win32GridTileTest.cpp)
